@@ -63,7 +63,7 @@ Project uses the Page Object Model structure, making methods and locators as reu
 
 ### Built With
 
-* [Node.js](ttps://nodejs.org)
+* [Node.js](https://nodejs.org)
 * [Playwright](https://playwright.dev/)
 
 
