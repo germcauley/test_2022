@@ -11,8 +11,6 @@ let userAgentInfo,browserName,index;
 //assertion data
 const newTaskNameInlist = 'div.TasksTableTaskList__task:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > div:nth-child(2) > a:nth-child(1)';
 const completedTaskNameInlist = '.table-cell-task-name';
-const mileStoneTitle = '.w-milestone-row__title-label';
-
 
 
 
@@ -33,22 +31,6 @@ test.afterEach(async ({ page }) => {
 });
 
 
-// test('Login and verify ID', async ({ page }) => {
-//     const basePage = new BasePage(page);
-//     //login
-//     await basePage.LoginMethodpom();     
-//     //click avatar
-//     await page.locator('button.flex-grow').click();
-//     //wait for menu to be visible
-//     await page.locator('span.text-text:nth-child(1)').isVisible();
-//     //verify name
-//     await expect(page.locator('span.text-text:nth-child(1)')).toHaveText([
-//         'Gerald McAuley'
-//     ]);
-//     await page.screenshot({ path: 'ScreenShots/LoginSuccessScreenshot.png', fullPage: true });
-// });
-
-
 
 test('Create Task', async ({ page }) => {
     const projectPage = new ProjectPage(page);
@@ -66,11 +48,7 @@ test('Create Task', async ({ page }) => {
     var res = projectPage.page.locator(newTaskNameInlist);
     await expect(res).toHaveText([
         "This is a new task for "+ browserName
-    ]); 
-    // await projectPage.selectProjectsTab();
-    // await projectPage.cleanup_deleteTaskLists();
-        
-            //await page.screenshot({ path: 'screenshot.png', fullPage: true });  
+    ]);   
 });
 
 
@@ -95,58 +73,7 @@ test('Create task and update status', async ({ page }) => {
         await expect(res).toHaveText([
             "This is a completed task"
         ]);
-    //cleanup
-    //await projectPage.selectProjectsTab();    
-    //await projectPage.cleanup_deleteTaskLists()
-
 });
 
 
 
-// test('Create a Milestone', async ({ page }) => {
-//     const projectPage = new ProjectPage(page)
-
-//     //login    
-//     await projectPage.LoginMethodpom();    
-//     //go to projects tab
-//     await projectPage.selectProjectsTab();
-//     //open active project , create a task list    
-//     await projectPage.openActiveProject1();
-
-//     await projectPage.viewMileStones();
-
-//     await projectPage.createMileStone();
-
-//     var res = projectPage.page.locator(mileStoneTitle);
-//     await expect(res).toHaveText([
-//                     "New Milestone Created"
-//                 ]);
-//  //cleanup
-
-//    await projectPage.cleanup_deleteMileStones();
-// });
-
-// test('Create a Milestone and then complete the milestone', async ({ page }) => {
-//     const projectPage = new ProjectPage(page)
-
-//     //login    
-//     await projectPage.LoginMethodpom();    
-//     //go to projects tab
-//     await projectPage.selectProjectsTab();
-//     //open active project , create a task list    
-//     await projectPage.openActiveProject1();
-
-//     await projectPage.viewMileStones();
-
-//     await projectPage.createMileStone();
-
-//     var res = projectPage.page.locator(mileStoneTitle);
-//     await expect(res).toHaveText([
-//                     "New Milestone Created"
-//                 ]);
-//     await projectPage.completeMileStone();  
-    
-//     //cleanup
-
-//    await projectPage.cleanup_deleteMileStones();
-// });
