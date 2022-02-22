@@ -9,15 +9,10 @@ exports.BasePage= class BasePage {
      * @param {import('@playwright/test').Page} page
      */
     constructor(page) {
-      this.page = page;
-      
+      this.page = page;      
     }
 
     //methods
-
-
-
-
     async selectProjectsTab(){
       //await this.page.waitForLoadState('domcontentloaded');  
       await this.page.locator(projectsTab).isVisible();
