@@ -9,19 +9,11 @@
     <img src="images\logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Automated Tests</h3>
+<h3 align="center">Automated Tests by Gerald McAuley</h3>
 
   <p align="center">
     Some tests for TeamWork QA env using playwright js
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+   
   </p>
 </div>
 
@@ -43,8 +35,13 @@
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
-    </li>    
-    <li><a href="#contact">Contact</a></li>    
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -55,7 +52,9 @@
 
 Some basic smoke tests using the Playwright e2e testing framework.
 
-Project uses the Page Object Model structure, making methods and locators as reusable as possible. Cross browser tests can be run in parallel or individually using different terminal commands
+Project uses the Page Object Model structure, making methods and locators as reusable as possible. Cross browser tests can be run in parallel or individually using different terminal commands.
+
+ Tests seem to become less stable the more workers processes that are in use so some fine tuning is still required. 2-3 worker process seem to work the best if executing tests in parallel.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -63,7 +62,7 @@ Project uses the Page Object Model structure, making methods and locators as reu
 
 ### Built With
 
-* [Node.js](https://nodejs.org)
+* [Node.js](ttps://nodejs.org)
 * [Playwright](https://playwright.dev/)
 
 
@@ -74,12 +73,11 @@ Project uses the Page Object Model structure, making methods and locators as reu
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Follow these steps in order to download and execute the tests correctly.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Install npm.
 * npm
   ```sh
   npm install npm@latest -g
@@ -87,74 +85,40 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/germcauley/test_2022.git
+   ```
+2. Move to project directory
+   ```sh
+   cd test_2022/new-project/
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Run the tests
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   //A) using a single worker process
+   npx playwright test --workers 1
+   //B) using 2 worker processes
+   npx playwright test --workers 2
    ```
-
+4. Serve the html report and view in browser
+   ```js
+    npx playwright show-report
+   ```
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## More Info
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the playwright [Documentation](https://playwright.dev/docs/intro)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
@@ -162,12 +126,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Gerald McAuley - geraldmcauley@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 
 
 
