@@ -100,18 +100,18 @@ exports.ProjectPage = class ProjectPage extends BasePage {
      
      async completeMileStone(mileStoneName){         
             // Click text=Complete this Milestone
-        await this.page.locator('text='+mileStoneName).click();
-        await this.page.locator('text='+mileStoneName).click();
-        // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/milestones/236');
-        // Click button[name="milestonecomplete"]
-        //await this.page.waitForLoadState('load');
+        await this.page.locator('text='+mileStoneName).hover();
+        await this.page.locator('text='+mileStoneName).click(); 
+        await this.page.locator('text='+mileStoneName).click();  
+
+        await this.page.locator('.s-milestone-details').isEnabled();      
+        await this.page.locator('button[name="milestonecomplete"]').isVisible();      
         await this.page.locator('button[name="milestonecomplete"]').click();
         //await this.page.locator('button[name="milestonecomplete"]')
         // Click a:has-text("Milestones")
         await this.page.locator('a:has-text("Milestones")').click();
-        await this.page.locator('a:has-text("Milestones")').click();
-        // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/projects/682/milestones/all');
-
+        await this.page.locator('a:has-text("Milestones")').click();        
+        
         // Click text=Completed 1
         await this.page.locator('text=Completed 1').hover();
         await this.page.locator('text=Completed 1').click();
