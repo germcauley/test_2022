@@ -100,7 +100,7 @@ Install npm.
    ```
 4. Run the tests
    ```js  
-   npx playwright test --workers 1   
+   npx playwright test 
    ```
 4. Serve the html report and view in browser
    ```js
