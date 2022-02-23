@@ -99,13 +99,8 @@ Install npm.
    npm install
    ```
 4. Run the tests
-   ```js
-   //A) using a single worker process
-   npx playwright test --workers 1
-   //B) using 2 worker processes
-   npx playwright test --workers 2
-   //C) One of the ilestone test can be flaky so you can run it on its own using
-    npx playwright test -g "Create a milestone and then complete the milestone"
+   ```js  
+   npx playwright test --workers 1   
    ```
 4. Serve the html report and view in browser
    ```js
