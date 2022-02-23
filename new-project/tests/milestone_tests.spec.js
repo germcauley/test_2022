@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 const {BasePage} = require('../../pages/basePage.js');
 const {ProjectPage} = require('../../pages/projectPage');
 const uaParser = require('ua-parser-js');
-test.describe.configure({ mode: 'parallel' });
+test.describe.configure({ mode: 'serial' });
 
 let userAgentInfo,browserName,index;
 
@@ -28,7 +28,7 @@ test.beforeEach(async ({ page },workerInfo) => {
 test.afterEach(async ({ page }) => {
     //cleanup
     const projectPage = new ProjectPage(page);
-   await projectPage.cleanup_deleteMileStones();
+  //await projectPage.cleanup_deleteMileStones();
 });
 
 
@@ -41,21 +41,21 @@ test('Create a Milestone', async ({ page }) => {
     //go to projects tab
     await projectPage.selectProjectsTab();
     //open active project , create a task list    
-    await projectPage.openActiveProject1();
+    await projectPage.openActiveProject();
 
     await projectPage.viewMileStones();
 
-    await projectPage.createMileStone(browserName+"MileStone"+index);
+    await projectPage.createMileStone('This is a milestone');
 
-    var res = projectPage.page.locator(mileStoneTitle);
-    await expect(res).toHaveText([
-                    browserName+"MileStone"+index
-                ]);
-    //open milestone for cleanup
-    await projectPage.openMileStone(browserName+"MileStone"+index)   
+    // var res = projectPage.page.locator(mileStoneTitle);
+    // await expect(res).toHaveText([
+    //                 browserName+"MileStone"+index
+    //             ]);
+    // //open milestone for cleanup
+    // await projectPage.openMileStone(browserName+"MileStone"+index)   
 });
 
-test('Create a Milestone and then complete the milestone', async ({ page }) => {
+test('Create a milestone and then complete the milestone', async ({ page }) => {
     const projectPage = new ProjectPage(page)
 
     //login    
@@ -63,20 +63,63 @@ test('Create a Milestone and then complete the milestone', async ({ page }) => {
     //go to projects tab
     await projectPage.selectProjectsTab();
     //open active project , create a task list    
-    await projectPage.openActiveProject1();
+    await projectPage.openActiveProject();
 
     await projectPage.viewMileStones();
 
-    await projectPage.createMileStone(browserName+"MileStone"+index);
-
-    var res = projectPage.page.locator(mileStoneTitle);
-    await expect(res).toHaveText([
-        browserName+"MileStone"+index
-                ]);
-    await projectPage.openMileStone(browserName+"MileStone"+index) 
-    await projectPage.completeMileStone();  
+    await projectPage.createMileStone('Complete this Milestone');
     
+    await projectPage.completeMileStone('Complete this Milestone');  
+    
+    await expect(page.locator('text=Complete this Milestone')).toBeVisible(); 
     //cleanup
 
    
 });
+
+
+
+test('cleanup milestones', async ({ page }) => {
+    const projectPage = new ProjectPage(page)
+
+    //login    
+    await projectPage.LoginMethodpom();    
+    //go to projects tab
+    await projectPage.selectProjectsTab();
+    //open active project , create a task list    
+    await projectPage.openActiveProject();
+
+    await projectPage.viewMileStones();
+
+    // Click text=All 2
+    await page.locator('text=All 2').click();
+  
+    // Click text=milestone 2
+    await page.locator('text=This is a milestone').click();
+  
+    // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/milestones/255');
+    // Click text=Delete
+    await page.locator('text=Delete').click();
+    // Click button:has-text("OK")
+    await Promise.all([
+      page.waitForNavigation(/*{ url: 'https://automationtesting.teamwork.com/#/projects/682/milestones/upcoming' }*/),
+      page.locator('button:has-text("OK")').click()
+    ]);
+   
+    // Click text=All 1
+    await page.locator('text=All 1').click();
+    // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/projects/682/milestones/all');
+  
+    // Click text=Complete this Milestone
+    await page.locator('text=Complete this Milestone').click();
+    
+    // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/milestones/254');
+    // Click text=Delete
+    await page.locator('text=Delete').click();
+    // Click button:has-text("OK")
+    await Promise.all([
+      page.waitForNavigation(/*{ url: 'https://automationtesting.teamwork.com/#/projects/682/milestones/upcoming' }*/),
+      page.locator('button:has-text("OK")').click()
+    ]);
+  
+  });

@@ -52,9 +52,10 @@
 
 Some basic smoke tests using the Playwright e2e testing framework.
 
-Project uses the Page Object Model structure, making methods and locators as reusable as possible. Cross browser tests can be run in parallel or individually using different terminal commands.
+Project uses the Page Object Model structure, making methods and locators as reusable as possible.
 
- Tests seem to become less stable the more workers processes that are in use so some fine tuning is still required. 2-3 worker process seem to work the best if executing tests in parallel.
+The test are organised into three groups: Login test, task tests,milestone tests.
+The task tests do not run in parallel as they make use of the same task list, however the milestone tests should run in parallel
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

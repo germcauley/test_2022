@@ -14,12 +14,14 @@ exports.BasePage= class BasePage {
 
     //methods
     async selectProjectsTab(){
-      //await this.page.waitForLoadState('domcontentloaded');  
-      await this.page.locator(projectsTab).isVisible();
-      await this.page.locator(projectsTab).isEnabled();
-      await this.page.locator(projectsTab).hover();
-      await this.page.locator(projectsTab).click();
-      await this.page.locator(projectsTab).click();      
+          // Click button:has-text("Projects")
+      await this.page.locator('button:has-text("Projects")').click();
+      // Click a:has-text("All Projects")
+      await Promise.all([
+          this.page.waitForNavigation(/*{ url: 'https://automationtesting.teamwork.com/#/projects/list' }*/),
+          this.page.locator('a:has-text("All Projects")').click()
+    ]); 
+        
       }
 
     async LoginMethodpom() {
