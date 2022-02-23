@@ -100,7 +100,7 @@ exports.ProjectPage = class ProjectPage extends BasePage {
      
      async completeMileStone(mileStoneName){         
             // Click text=Complete this Milestone
-        await this.page.locator('text='+mileStoneName).hover();
+        await this.page.locator('text='+mileStoneName).click();
         await this.page.locator('text='+mileStoneName).click();
         // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/milestones/236');
         // Click button[name="milestonecomplete"]
