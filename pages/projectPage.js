@@ -100,6 +100,7 @@ exports.ProjectPage = class ProjectPage extends BasePage {
      
      async completeMileStone(mileStoneName){         
             // Click text=Complete this Milestone
+        await this.page.locator('text='+mileStoneName).hover();
         await this.page.locator('text='+mileStoneName).click();
         // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/milestones/236');
         // Click button[name="milestonecomplete"]
@@ -112,6 +113,7 @@ exports.ProjectPage = class ProjectPage extends BasePage {
         // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/projects/682/milestones/all');
 
         // Click text=Completed 1
+        await this.page.locator('text=Completed 1').hover();
         await this.page.locator('text=Completed 1').click();
      }
     //cleanUp Methods
