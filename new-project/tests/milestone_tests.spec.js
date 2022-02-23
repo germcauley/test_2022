@@ -47,12 +47,8 @@ test('Create a Milestone', async ({ page }) => {
 
     await projectPage.createMileStone('This is a milestone');
 
-    // var res = projectPage.page.locator(mileStoneTitle);
-    // await expect(res).toHaveText([
-    //                 browserName+"MileStone"+index
-    //             ]);
-    // //open milestone for cleanup
-    // await projectPage.openMileStone(browserName+"MileStone"+index)   
+    //cleanup  
+    
 });
 
 test('Create a milestone and then complete the milestone', async ({ page }) => {
@@ -74,6 +70,7 @@ test('Create a milestone and then complete the milestone', async ({ page }) => {
     await expect(page.locator('text=Complete this Milestone')).toBeVisible(); 
     //cleanup
 
+    
    
 });
 
@@ -96,10 +93,11 @@ test('cleanup milestones', async ({ page }) => {
   
     // Click text=milestone 2
     await page.locator('text=This is a milestone').click();
-  
+    await page.locator('.s-milestone-details').isVisible;  
+    await page.locator('.s-milestone-details').isEditable(); 
     // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/milestones/255');
-    // Click text=Delete
-    await page.locator('text=Delete').click();
+    // Click text=Delete    
+    await page.locator('span:has-text("Delete")').click();
     // Click button:has-text("OK")
     await Promise.all([
       page.waitForNavigation(/*{ url: 'https://automationtesting.teamwork.com/#/projects/682/milestones/upcoming' }*/),
@@ -112,10 +110,11 @@ test('cleanup milestones', async ({ page }) => {
   
     // Click text=Complete this Milestone
     await page.locator('text=Complete this Milestone').click();
-    
+    await page.locator('.s-milestone-details').isVisible; 
+    await page.locator('.s-milestone-details').isEditable() ;
     // assert.equal(page.url(), 'https://automationtesting.teamwork.com/#/milestones/254');
-    // Click text=Delete
-    await page.locator('text=Delete').click();
+    // Click text=Delete    
+    await page.locator('span:has-text("Delete")').click();
     // Click button:has-text("OK")
     await Promise.all([
       page.waitForNavigation(/*{ url: 'https://automationtesting.teamwork.com/#/projects/682/milestones/upcoming' }*/),
